@@ -48,7 +48,7 @@
   --rainbow-8: var(--orange);
   --rainbow-9: var(--yellow);
 
-  --background: rgb(31, 39, 54);
+  --background: #000000;
 
   --rainbow-gradient: linear-gradient(
     /* slanted */ 135deg,
@@ -313,10 +313,10 @@ p.positive {
 }
 
 blockquote {
-  color: #9faeee;
+  color: #b79eed;
   margin: 0px;
   padding-left: 23px;
-  border-left: 1px #9faeee solid;
+  border-left: 1px #b79eed solid;
 }
 
 hr {
