@@ -96,6 +96,11 @@ body {
   font-size: 1.1em;
 }
 
+.dark-mode {
+  color: rgb(31, 39, 54);
+  background-color: white:
+}
+
 audio,
 video {
   width: 100%;
