@@ -134,15 +134,8 @@
           <span class="account-actions">
             <button onclick="location.href = '/signup/?logout';" class="">Switch account</button>
             <button id="delete-account" class="danger">Delete account</button>
+            <button onclick="darkMode()">Toggle dark mode</button>
           </span>
-          <button onclick="darkMode()">Toggle dark mode</button>
-          
-          <script>
-            function myFunction() {
-              var element = document.body;
-              element.classList.toggle("dark-mode");
-            }
-          </script>
       `;
 
       const loginAutomatically =
