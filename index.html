@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<script
-  data-goatcounter="https://todepond.goatcounter.com/count"
-  async
-  src="//gc.zgo.at/count.js"></script>
 <title>Signout - A Login client</title>
 <link rel="shortcut icon" href="/favicon.png" />
 <meta property="og:image" content="https://todepond.com/lab/og.png" />
@@ -92,7 +88,7 @@
     submitButton.textContent = "Logging in...";
 
     loadingFeed.style.display = "block";
-    const response = await fetch("https://todepond-lablogin.web.val.run", {
+    const response = await fetch("https://gaimeri17-lablogin.web.val.run", {
       method: "POST",
       body: JSON.stringify({ username, password }),
     });
@@ -124,9 +120,9 @@
               Pick a GIF
               <button type="submit" value="" class="close-button" autofocus>Close</button>
             </header>
-            <button class="gif" value="tode" title="Tode"><img src="/images/tode.gif" alt="Tode" /></button>
-            <button class="gif" value="berd" title="Berd"><img src="/image/berd.gif" alt="Berd" /></button>
-            <button class="gif" value="bot" title="Bot"><img src="/image/bot.gif" alt="Bot" /></button>
+            <button class="gif" value="tode" title="Tode"><img src="/signup/images/tode.gif" alt="Tode" /></button>
+            <button class="gif" value="berd" title="Berd"><img src="/signup/image/berd.gif" alt="Berd" /></button>
+            <button class="gif" value="bot" title="Bot"><img src="/signup/image/bot.gif" alt="Bot" /></button>
           </form>
         </dialog>
         <br /><br />
@@ -192,7 +188,7 @@
         }
         loadingFeed.style.display = "block";
         const response = await fetch(
-          "https://todepond-lablogindeleteaccount.web.val.run",
+          "https://gaimeri17-lablogindeleteaccount.web.val.run",
           {
             method: "POST",
             body: JSON.stringify({ username, password }),
@@ -250,7 +246,7 @@
     }
 
     const response = await fetch(
-      "https://todepond-labloginupdatestatus.web.val.run",
+      "https://gaimeri17-labloginupdatestatus.web.val.run",
       {
         method: "POST",
         body: JSON.stringify({ status, username, password, gif }),
@@ -294,7 +290,7 @@
     }
     // https://todepond-lablogingetusers.web.val.run
     const response = await fetch(
-      "https://todepond-lablogingetusers.web.val.run"
+      "https://gaimeri17-lablogingetusers.web.val.run"
     );
 
     const entries = [];
@@ -583,7 +579,7 @@
     }
 
     loadingFeed.style.display = "block";
-    fetch("https://todepond-labloginbanuser.web.val.run", {
+    fetch("https://gaimeri17-labloginbanuser.web.val.run", {
       method: "POST",
       body: JSON.stringify({ username, password, admin, type, target }),
     })
