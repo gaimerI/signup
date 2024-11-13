@@ -14,7 +14,7 @@
 <meta name="twitter:image" content="https://todepond.com/lab/og.png" />
 
 <link rel="stylesheet" href="/signup/style.css" />
-<link rel="stylesheet" href="signup/style2.css" />
+<link rel="stylesheet" href="/signup/style2.css" />
 
 <h1>Login</h1>
 <a
@@ -488,7 +488,7 @@
       p.appendChild(span);
       const img = document.createElement("img");
       img.className = "gif";
-      img.src = entry.gif ? `/image/${entry.gif}.gif` : "";
+      img.src = entry.gif ? `/signup/image/${entry.gif}.gif` : "";
       img.style.display = entry.gif ? "block" : "none";
       p.appendChild(img);
       const div = document.createElement("div");
@@ -770,10 +770,10 @@
   const urlQuery = new URLSearchParams(window.location.search);
   if (urlQuery.has("logout")) {
     // remove the query from the url
-    window.history.replaceState({}, "", "/lab/login/");
+    window.history.replaceState({}, "", "/signup/");
   } else if (urlQuery.has("delete")) {
     // remove the query from the url
-    window.history.replaceState({}, "", "/lab/login/");
+    window.history.replaceState({}, "", "/signup/");
     passwordInput.value = "";
     usernameInput.value = "";
   } else if (
@@ -847,7 +847,7 @@
   addEventListener("pointerdown", (event) => {
     // clear anchor from url, eg: #post-TodePond
     // but don't navigate or anything.
-    window.history.replaceState({}, "", "/lab/login/");
+    window.history.replaceState({}, "", "/signup/");
 
     document.body.classList.add("untarget");
   });
