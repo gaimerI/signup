@@ -254,6 +254,16 @@
     loadingFeed.style.display = "none";
   }
 
+  const changePasswordButton = document.querySelector(#change-password)
+  changePasswordButton.addEventListener("click", async () => {
+    const newPassword = prompt("Enter your new password")
+  }
+
+
+  window.targetyo = () => {
+    document.body.classList.remove("untarget");
+  };
+
   async function handleUpdateStatus({ username, password, gif = null }) {
     const button = document.querySelector("#update-status");
     if (button.disabled) {
@@ -893,37 +903,6 @@
 
     document.body.classList.add("untarget");
   });
-
-  const changePasswordButton = document.querySelector("#change-password");
-
-changePasswordButton.addEventListener("click", async () => {
-  const newPassword = prompt("Enter your new password:");
-  if (!newPassword) {
-    alert("Password change canceled.");
-    return;
-  }
-
-  // Add any password validation here if needed, e.g., minimum length check
-
-  // Proceed to update password on the server
-  loadingFeed.style.display = "block";
-  const response = await fetch(config.endpoints.updatePassword, {
-    method: "POST",
-    body: JSON.stringify({ username: usernameInput.value, password: passwordInput.value, newPassword }),
-  });
-  const json = await response.json();
-  loadingFeed.style.display = "none";
-
-  if (json.error) {
-    alert(`Error: ${json.error}`);
-  } else {
-    alert("Password changed successfully.");
-    // Optionally update localStorage with the new password
-    localStorage.setItem("labLoginPassword", newPassword);
-    passwordInput.value = newPassword;
-  }
-});
-
 
   window.targetyo = () => {
     document.body.classList.remove("untarget");
