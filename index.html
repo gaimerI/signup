@@ -5,7 +5,7 @@
 
 <!-- Metadata -->
 <!DOCTYPE html>
-<title>Login</title>
+<title>Signup - A new Login client</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="shortcut icon" href="/favicon.png" />
 <meta property="og:image" content="https://todepond.com/lab/og.png" />
@@ -36,7 +36,7 @@
 <!----------------------------------------------------->
 
 <!-- Title -->
-<h1>Login</h1>
+<h1>Signup</h1>
 <a
   href="https://github.com/TodePond/TodePondDotCom/blob/main/lab/login/"
   style="float: right; position: relative; top: -2px"
@@ -59,7 +59,7 @@
   <label for="password">Unsecurely stored password</label>
   <input type="password" id="password" name="password" autocomplete="off" />
   <br /><br />
-  <button type="submit" class="primary">Login</button>
+  <button type="submit" class="primary">Signup</button>
 </header>
 
 <!-- Feed title and refresh indicator -->
@@ -135,8 +135,8 @@
             <input type="text" id="status" name="status" autocomplete="off" />
             <span class="status-buttons">
               <span>
-              <button id="update-status" class="primary">Update status</button>
-              <button id="update-gif">Update status with GIF</button>
+              <button class="button-input" id="update-status" class="primary">Update status</button>
+              <button class="button-input" id="update-gif">Update status with GIF</button>
               </span>
               <dialog id="gif-dialog">
               <form method="dialog">
@@ -144,9 +144,9 @@
                   Pick a GIF
                   <button type="submit" value="" class="close-button" autofocus>Close</button>
                   </header>
-                  <button class="gif" value="tode" title="Tode"><img src="https://todepond.com/image/tode.gif" alt="Tode" /></button>
-                  <button class="gif" value="berd" title="Berd"><img src="https://todepond.com/image/berd.gif" alt="Berd" /></button>
-                  <button class="gif" value="bot" title="Bot"><img src="https://todepond.com/image/bot.gif" alt="Bot" /></button>
+                  <button class="button-input" class="gif" value="tode" title="Tode"><img src="https://todepond.com/image/tode.gif" alt="Tode" /></button>
+                  <button class="button-input" class="gif" value="berd" title="Berd"><img src="https://todepond.com/image/berd.gif" alt="Berd" /></button>
+                  <button class="button-input" class="gif" value="bot" title="Bot"><img src="https://todepond.com/image/bot.gif" alt="Bot" /></button>
               </form>
               </dialog>
             </span>
@@ -154,10 +154,10 @@
               <details class="account-dashboard">
               <summary class="account-burger">Burger menu</summary>
                 <span class="account-actions">
-                  <button onclick="location.href = '${PAGE_PATH}?logout';" class="">Switch account</button>
-                  <button id="delete-account" class="danger">Delete account</button>
+                  <button class="button-input" onclick="location.href = '${PAGE_PATH}?logout';" class="">Switch account</button>
+                  <button class="button-input" id="delete-account" class="danger">Delete account</button>
                   <!-- new Change Password button -->
-                  <button id="change-password" class="secondary">Change Password</button>
+                  <button class="button-input" id="change-password" class="secondary">Change Password</button>
                 </span>
       `;
 
