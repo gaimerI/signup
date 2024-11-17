@@ -248,15 +248,10 @@
         if (!gif) return; // close button clicked
         handleUpdateStatus({ username, password, gif });
       });
-    }
-
-    await pullUserStatuses();
-    loadingFeed.style.display = "none";
-  }
-
-  const changePasswordButton = document.querySelector("#change-password");
+      // Password changing
+      const changePasswordButton = document.querySelector("#change-password");
       changePasswordButton.addEventListener("click", async () => {
-        const confirmChangePassword = confirm(
+        const confirmDelete = confirm(
           "Are you sure you want to delete your account?"
         );
         if (!confirmDelete) {
@@ -277,27 +272,11 @@
           location.href = PAGE_PATH + "?delete";
         }
       });
-      const statusInput = document.querySelector("#status");
-      statusInput.value = json[3];
-      const updateStatusButton = document.querySelector("#update-status");
-      updateStatusButton.addEventListener("click", () =>
-        handleUpdateStatus({ username, password })
-      );
-      statusInput.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
-          handleUpdateStatus({ username, password });
-        }
-      });
-      const gifDialog = document.querySelector("#gif-dialog");
-      document.querySelector("#update-gif").addEventListener("click", () => {
-        gifDialog.show();
-      });
-      gifDialog.addEventListener("close", () => {
-        const gif = gifDialog.returnValue;
-        if (!gif) return; // close button clicked
-        handleUpdateStatus({ username, password, gif });
-      });
+    }
 
+    await pullUserStatuses();
+    loadingFeed.style.display = "none";
+  }
 
   window.targetyo = () => {
     document.body.classList.remove("untarget");
