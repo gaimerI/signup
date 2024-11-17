@@ -282,7 +282,7 @@
                 // update stored password
                 localStorage.setItem("labLoginUsername", username);
                 localStorage.setItem("labLoginPassword", newPassword);
-                location.href = PAGE_PATH;
+                location.href = PAGE_PATH + ?logout;
               }
           } catch (error) {
             console.error("Login after password change failed:", error);
