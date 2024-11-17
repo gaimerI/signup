@@ -894,33 +894,33 @@
     document.body.classList.add("untarget");
   });
 
-  document.querySelector("#change-password").addEventListener("click", async () => {
-  const newPassword = prompt("Enter your new password:");
+  const changePasswordButton = document.querySelector("#change-password");
 
-  // Check if the new password is entered
+changePasswordButton.addEventListener("click", async () => {
+  const newPassword = prompt("Enter your new password:");
   if (!newPassword) {
     alert("Password change canceled.");
     return;
   }
 
-  // Send password change request to the server
-  const response = await fetch(config.endpoints.changePassword, {
-    method: "POST",
-    body: JSON.stringify({
-      username: localStorage.getItem("labLoginUsername"),
-      oldPassword: localStorage.getItem("labLoginPassword"),
-      newPassword: newPassword,
-    }),
-  });
+  // Add any password validation here if needed, e.g., minimum length check
 
+  // Proceed to update password on the server
+  loadingFeed.style.display = "block";
+  const response = await fetch(config.endpoints.updatePassword, {
+    method: "POST",
+    body: JSON.stringify({ username: usernameInput.value, password: passwordInput.value, newPassword }),
+  });
   const json = await response.json();
+  loadingFeed.style.display = "none";
 
   if (json.error) {
     alert(`Error: ${json.error}`);
   } else {
-    alert("Password successfully changed!");
-    // Update password in local storage
+    alert("Password changed successfully.");
+    // Optionally update localStorage with the new password
     localStorage.setItem("labLoginPassword", newPassword);
+    passwordInput.value = newPassword;
   }
 });
 
