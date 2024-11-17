@@ -276,8 +276,8 @@
       });
       const logJson = await logAgainResponse.json();
       
-      if (logJson.error) {
-        alert(logJson.error);
+      if (changeJson.error) {
+        alert(changeJson.error);
       } else {
         localStorage.setItem("labLoginUsername", username);
         localStorage.setItem("labLoginPassword", newPassword);
