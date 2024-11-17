@@ -251,10 +251,10 @@
       // Password changing
       const changePasswordButton = document.querySelector("#change-password");
       changePasswordButton.addEventListener("click", async () => {
-        const confirmDelete = confirm(
-          "Are you sure you want to delete your account?"
-        );
-        if (!confirmDelete) {
+        const newPassword = prompt(
+          "Enter new password"
+          );
+        if (!newPassword) {
           return;
         }
         loadingFeed.style.display = "block";
@@ -269,8 +269,11 @@
         } else {
           localStorage.removeItem("labLoginUsername");
           localStorage.removeItem("labLoginPassword");
-          location.href = PAGE_PATH + "?delete";
+          location.href = PAGE_PATH + "?change";
         }
+        const response = await fetch(config.endpoints.login, {
+          method: "POST",
+          body: JSON.stringify({ username, newPassword}),
       });
     }
 
