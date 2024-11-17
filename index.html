@@ -259,25 +259,25 @@
           return;
         }
         loadingFeed.style.display = "block";
-        const response = await fetch(config.endpoints.delete, {
+        const changeResponse = await fetch(config.endpoints.delete, {
           method: "POST",
           body: JSON.stringify({ username, password }),
         });
-        const json = await response.json();
+        const changeJson = await response.json();
         loadingFeed.style.display = "none";
-        if (json.error) {
-          alert(json.error);
+        if (changeJson.error) {
+          alert(changeJson.error);
         } else {
           // Password change succeeded
           try {
-            const response = await fetch(config.endpoints.login, {
+            const logAgainResponse = await fetch(config.endpoints.login, {
               method: "POST",
               body: JSON.stringify({ username, newPassword }),
             });
 
-            const json = await response.json();
-              if (json.error) {
-              alert (json.error);
+            const logJson = await response.json();
+              if (logJson.error) {
+              alert (logJson.error);
               } else {
                 // update stored password
                 localStorage.setItem("labLoginPassword", newPassword);
