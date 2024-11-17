@@ -156,7 +156,7 @@
                 <span class="account-actions">
                   <button onclick="location.href = '${PAGE_PATH}?logout';" class="">Switch account</button>
                   <button id="delete-account" class="danger">Delete account</button>
-                  <!-- New Change Password button -->
+                  <!-- new Change Password button -->
                   <button id="change-password" class="secondary">Change Password</button>
                 </span>
       `;
@@ -258,7 +258,22 @@
           return;
         }
         loadingFeed.style.display = "block";
-        changePassword({username, password})
+        const response = await fetch(config.endpoints.delete, {
+          method: "POST",
+          body: JSON.stringify({ username, password }),
+        });
+        const json = await response.json();
+        loadingFeed.style.display = "none";
+        if (json.error) {
+          alert(json.error);
+        } else {
+          localStorage.removeItem("labLoginPassword");
+          location.href = PAGE_PATH + "?change";
+        }
+        const response = await fetch(config.endpoints.login, {
+          method: "POST",
+          body: JSON.stringify({ username, newPassword }),
+          });
       });
     }
 
@@ -869,22 +884,6 @@
   //   );
   // });
   // }
-  function changePassword({
-    curretUsername,
-    currentPassword
-  })
-    const response = await fetch(config.endpoints.delete, {
-          method: "POST",
-          body: JSON.stringify({ currentUsername, currentPassword }),
-        });
-        const json = await response.json();
-        loadingFeed.style.display = "none";
-        if (json.error) {
-          alert(json.error);
-        } else {
-          localStorage.removeItem("labLoginUsername");
-          location.href = PAGE_PATH + "?change";
-        }
   function addUserActions({
     userActionsElement,
     username,
