@@ -248,6 +248,7 @@
         if (!gif) return; // close button clicked
         handleUpdateStatus({ username, password, gif });
       });
+      
       // Password changing
       const changePasswordButton = document.querySelector("#change-password");
       changePasswordButton.addEventListener("click", async () => {
@@ -267,8 +268,25 @@
         if (json.error) {
           alert(json.error);
         } else {
-          localStorage.removeItem("labLoginPassword");
-          location.href = PAGE_PATH + "?delete";
+          // Password change succeeded
+          try {
+            const loginResponse = await fetch(config.endpoints.login, {
+              method: "POST",
+              body: JSON.stringify({ username, newPassword }),
+            });
+
+            const json = await response.json();
+              if (json.error) {
+              alert(loginJson.error);
+              } else {
+                // update stored password
+                localStorage.setItem("labLoginPassword", newPassword);
+                location.href = PAGE_PATH;
+              }
+          } catch (error) {
+            console.error("Login after password change failed:", error);
+            alert("Login failed. Please try again.");
+          }
         }
       });
     }
