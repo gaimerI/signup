@@ -277,7 +277,7 @@
 
             const json = await response.json();
               if (json.error) {
-              alert(loginJson.error);
+              alert (json.error);
               } else {
                 // update stored password
                 localStorage.setItem("labLoginPassword", newPassword);
