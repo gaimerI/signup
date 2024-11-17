@@ -894,6 +894,37 @@
     document.body.classList.add("untarget");
   });
 
+  document.querySelector("#change-password").addEventListener("click", async () => {
+  const newPassword = prompt("Enter your new password:");
+
+  // Check if the new password is entered
+  if (!newPassword) {
+    alert("Password change canceled.");
+    return;
+  }
+
+  // Send password change request to the server
+  const response = await fetch(config.endpoints.changePassword, {
+    method: "POST",
+    body: JSON.stringify({
+      username: localStorage.getItem("labLoginUsername"),
+      oldPassword: localStorage.getItem("labLoginPassword"),
+      newPassword: newPassword,
+    }),
+  });
+
+  const json = await response.json();
+
+  if (json.error) {
+    alert(`Error: ${json.error}`);
+  } else {
+    alert("Password successfully changed!");
+    // Update password in local storage
+    localStorage.setItem("labLoginPassword", newPassword);
+  }
+});
+
+
   window.targetyo = () => {
     document.body.classList.remove("untarget");
   };
