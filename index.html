@@ -263,7 +263,7 @@
           method: "POST",
           body: JSON.stringify({ username, password }),
         });
-        const changeJson = await response.json();
+        const changeJson = await changeResponse.json();
         loadingFeed.style.display = "none";
         if (changeJson.error) {
           alert(changeJson.error);
@@ -282,7 +282,8 @@
                 // update stored password
                 localStorage.setItem("labLoginUsername", username);
                 localStorage.setItem("labLoginPassword", newPassword);
-                location.href = PAGE_PATH + ?logout;
+                location.href = `${PAGE_PATH}?logout`;
+
               }
           } catch (error) {
             console.error("Login after password change failed:", error);
