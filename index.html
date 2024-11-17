@@ -254,10 +254,50 @@
     loadingFeed.style.display = "none";
   }
 
-  // const changePasswordButton = document.querySelector(#change-password)
-  // changePasswordButton.addEventListener("click", async () => {
-  //   const newPassword = prompt("Enter your new password")
-  // }
+  const changePasswordButton = document.querySelector("#change-password");
+      changePasswordButton.addEventListener("click", async () => {
+        const confirmChangePassword = confirm(
+          "Are you sure you want to delete your account?"
+        );
+        if (!confirmDelete) {
+          return;
+        }
+        loadingFeed.style.display = "block";
+        const response = await fetch(config.endpoints.delete, {
+          method: "POST",
+          body: JSON.stringify({ username, password }),
+        });
+        const json = await response.json();
+        loadingFeed.style.display = "none";
+        if (json.error) {
+          alert(json.error);
+        } else {
+          localStorage.removeItem("labLoginUsername");
+          localStorage.removeItem("labLoginPassword");
+          location.href = PAGE_PATH + "?delete";
+        }
+      });
+      const statusInput = document.querySelector("#status");
+      statusInput.value = json[3];
+      const updateStatusButton = document.querySelector("#update-status");
+      updateStatusButton.addEventListener("click", () =>
+        handleUpdateStatus({ username, password })
+      );
+      statusInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          handleUpdateStatus({ username, password });
+        }
+      });
+      const gifDialog = document.querySelector("#gif-dialog");
+      document.querySelector("#update-gif").addEventListener("click", () => {
+        gifDialog.show();
+      });
+      gifDialog.addEventListener("close", () => {
+        const gif = gifDialog.returnValue;
+        if (!gif) return; // close button clicked
+        handleUpdateStatus({ username, password, gif });
+      });
+  }
 
 
   window.targetyo = () => {
