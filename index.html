@@ -252,45 +252,45 @@
       // Password changing
       const changePasswordButton = document.querySelector("#change-password");
       changePasswordButton.addEventListener("click", async () => {
-        const newPassword = prompt(
-          "Enter new password"
-          );
+        const newPassword = prompt("Enter new password");
         if (!newPassword) {
           return;
         }
-        loadingFeed.style.display = "block";
-        const changeResponse = await fetch(config.endpoints.delete, {
-          method: "POST",
-          body: JSON.stringify({ username, password }),
-        });
-        const changeJson = await changeResponse.json();
-        loadingFeed.style.display = "none";
-        if (changeJson.error) {
-          alert(changeJson.error);
-        } else {
-          // Password change succeeded
-          try {
-            const logAgainResponse = await fetch(config.endpoints.login, {
-              method: "POST",
-              body: JSON.stringify({ username, newPassword }),
-            });
-
-            const logJson = await response.json();
-              if (logJson.error) {
-              alert (logJson.error);
-              } else {
-                // update stored password
-                localStorage.setItem("labLoginUsername", username);
-                localStorage.setItem("labLoginPassword", newPassword);
-                location.href = `${PAGE_PATH}?change`;
-
-              }
-          } catch (error) {
-            console.error("Login after password change failed:", error);
-            alert("Login failed. Please try again.");
-          }
-        }
+  
+  loadingFeed.style.display = "block";
+  try {
+    const changeResponse = await fetch(config.endpoints.delete, {
+      method: "POST",
+      body: JSON.stringify({ username, password }),
+    });
+    const changeJson = await changeResponse.json();
+    loadingFeed.style.display = "none";
+    
+    if (changeJson.error) {
+      alert(changeJson.error);
+    } else {
+      // Login with new password to update session
+      const logAgainResponse = await fetch(config.endpoints.login, {
+        method: "POST",
+        body: JSON.stringify({ username, newPassword }),
       });
+      const logJson = await logAgainResponse.json();
+      
+      if (logJson.error) {
+        alert(logJson.error);
+      } else {
+        localStorage.setItem("labLoginUsername", username);
+        localStorage.setItem("labLoginPassword", newPassword);
+        location.href = `${PAGE_PATH}?change`;
+      }
+    }
+  } catch (error) {
+    console.error("Error during password change or login:", error);
+    alert("There was an error. Please try again.");
+    loadingFeed.style.display = "none";
+  }
+});
+
     }
 
     await pullUserStatuses();
