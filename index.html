@@ -271,9 +271,6 @@
           localStorage.removeItem("labLoginPassword");
           location.href = PAGE_PATH + "?change";
         }
-        const response = await fetch(config.endpoints.login, {
-          method: "POST",
-          body: JSON.stringify({ username, newPassword}),
       });
     }
 
