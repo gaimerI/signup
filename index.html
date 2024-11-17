@@ -275,7 +275,7 @@
               body: JSON.stringify({ username, newPassword }),
             });
 
-            const logJson = await logAgainResponse.json();
+            const logJson = await response.json();
               if (logJson.error) {
               alert (logJson.error);
               } else {
