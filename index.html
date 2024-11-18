@@ -24,6 +24,8 @@
   href="https://svenlaa.com/playground/loggo/user-styles.css" />
 <link rel="stylesheet" href="/signup/user-style.css" />
 
+<script> function loadLanguage(langCode) { return fetch(`lang/${langCode}.lang`) .then(response => { if (!response.ok) throw new Error("Language file not found"); return response.json(); }); } function applyTranslations(langData) { document.querySelectorAll("[data-translate-key]").forEach(element => { const key = element.getAttribute("data-translate-key"); if (langData[key]) { element.textContent = langData[key]; } }); } function setLanguage(langCode) { loadLanguage(langCode).then(applyTranslations).catch(error => console.error(error)); } document.addEventListener("DOMContentLoaded", () => { const userLang = navigator.language || "en_GB"; // Default to English setLanguage(userLang.replace("-", "_")); }); </script>
+
 <!-- Analytics available at todepond.goatcounter.com -->
 <script
   data-goatcounter="https://todepond.goatcounter.com/count"
@@ -135,7 +137,7 @@
             <input type="text" id="status" name="status" autocomplete="off" />
             <span class="status-buttons">
               <span>
-              <button class="text-input" data-i18n="welcome_message" id="update-status" class="primary"></button>
+              <button class="text-input" data-translate-key="welcome_message" id="update-status" class="primary"></button>
               <button class="text-input" id="update-gif">Update status with GIF</button>
               </span>
               <dialog id="gif-dialog">
@@ -944,36 +946,5 @@
     document.body.classList.remove("untarget");
   };
 
-  async function loadLanguage(lang) {
-    const response = await fetch(`${lang}.lang`);
-    if (!response.ok) {
-        throw new Error(`Failed to load language file: ${lang}`);
-    }
-    return await response.json();
-}
-
-  let translations = {};
-
-async function setLanguage(lang) {
-    try {
-        translations = await loadLanguage(lang);
-        updateText();
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-function updateText() {
-    // Example: Update elements with `data-i18n` attribute
-    document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        if (translations[key]) {
-            element.innerText = translations[key];
-        }
-    });
-}
-
-// Call this function with the user's preferred language code, e.g., 'en_GB'
-setLanguage('en_GB');
-
+  
     </script>
