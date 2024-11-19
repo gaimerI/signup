@@ -42,7 +42,7 @@
 <a
   href="https://github.com/TodePond/TodePondDotCom/blob/main/lab/login/"
   style="float: right; position: relative; top: -2px"
-  >View source</a
+  >Tarkastele lähdekoodia</a
 >
 
 <!-- Loading spinny thing in top left corner -->
@@ -66,7 +66,7 @@
 
 <!-- Feed title and refresh indicator -->
 <h2 id="feed-heading">
-  Feed <button id="refresh-sign" class="secondary span">Refreshing...</button>
+  Syöte <button id="refresh-sign" class="secondary span">Päivitetään...</button>
 </h2>
 
 <!-- Statuses get put inside this -->
@@ -125,7 +125,7 @@
     } else {
       const header = document.querySelector("header");
       const h1 = document.querySelector("h1");
-      h1.textContent = `Welcome back, `;
+      h1.textContent = `Tervetuloa takaisin, `;
       const namey = document.createElement("span");
       // <span class="name-${username}">${username}</span>!`;
       namey.textContent = username;
@@ -133,18 +133,18 @@
       h1.appendChild(namey);
       h1.append("!");
       let html = `
-            <label>Status</label>
+            <label>Tila</label>
             <input type="text" id="status" name="status" autocomplete="off" />
             <span class="status-buttons">
               <span>
-              <button class="text-input" data-translate-key="welcome_message" id="update-status" class="primary">Update status</button>
-              <button class="text-input" id="update-gif">Update status with GIF</button>
+              <button class="text-input" data-translate-key="welcome_message" id="update-status" class="primary">Päivitä tila</button>
+              <button class="text-input" id="update-gif">Päivitä tila GIF-animaatiolla</button>
               </span>
               <dialog id="gif-dialog">
               <form method="dialog">
                   <header>
-                  Pick a GIF
-                  <button type="submit" value="" class="close-button" autofocus>Close</button>
+                  Valitse GIF-animaatio
+                  <button type="submit" value="" class="close-button" autofocus>Sulje</button>
                   </header>
                   <button class="text-input gif" value="tode" title="Tode"><img src="https://todepond.com/image/tode.gif" alt="Tode" /></button>
                   <button class="text-input gif" value="berd" title="Berd"><img src="https://todepond.com/image/berd.gif" alt="Berd" /></button>
@@ -154,12 +154,12 @@
             </span>
             <br /><br />
               <details class="account-dashboard">
-              <summary class="account-burger">Burger menu</summary>
+              <summary class="account-burger">Hampurilaisvalikoima</summary>
                 <span class="account-actions">
-                  <button class="text-input" onclick="location.href = '${PAGE_PATH}?logout';" class="">Switch account</button>
-                  <button class="text-input" id="delete-account" class="danger">Delete account</button>
+                  <button class="text-input" onclick="location.href = '${PAGE_PATH}?logout';" class="">Vaihda tiliä</button>
+                  <button class="text-input" id="delete-account" class="danger">Poista tili</button>
                   <!-- new Change Password button -->
-                  <button class="text-input" id="change-password" class="secondary">Change Password</button>
+                  <button class="text-input" id="change-password" class="secondary">Vaihda salasana</button>
                 </span>
       `;
 
