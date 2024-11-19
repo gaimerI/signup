@@ -137,7 +137,7 @@
             <input type="text" id="status" name="status" autocomplete="off" />
             <span class="status-buttons">
               <span>
-              <button class="text-input" data-translate-key="welcome_message" id="update-status" class="primary"></button>
+              <button class="text-input" data-translate-key="welcome_message" id="update-status" class="primary">Update status</button>
               <button class="text-input" id="update-gif">Update status with GIF</button>
               </span>
               <dialog id="gif-dialog">
@@ -146,9 +146,9 @@
                   Pick a GIF
                   <button type="submit" value="" class="close-button" autofocus>Close</button>
                   </header>
-                  <button class="text-input" class="gif" value="tode" title="Tode"><img src="https://todepond.com/image/tode.gif" alt="Tode" /></button>
-                  <button class="text-input" class="gif" value="berd" title="Berd"><img src="https://todepond.com/image/berd.gif" alt="Berd" /></button>
-                  <button class="text-input" class="gif" value="bot" title="Bot"><img src="https://todepond.com/image/bot.gif" alt="Bot" /></button>
+                  <button class="text-input gif" value="tode" title="Tode"><img src="https://todepond.com/image/tode.gif" alt="Tode" /></button>
+                  <button class="text-input gif" value="berd" title="Berd"><img src="https://todepond.com/image/berd.gif" alt="Berd" /></button>
+                  <button class="text-input gif" value="bot" title="Bot"><img src="https://todepond.com/image/bot.gif" alt="Bot" /></button>
               </form>
               </dialog>
             </span>
@@ -254,7 +254,10 @@
       // Password changing
       const changePasswordButton = document.querySelector("#change-password");
       changePasswordButton.addEventListener("click", async () => {
-        const newPassword = prompt("Enter new password");
+        var hiddenElement = document.getElementById('update-status');
+          hiddenElement.style.display = 'hidden';
+        var hiddenElement = document.getElementById('update-gif');
+          hiddenElement.style.display = 'hidden';
         if (!newPassword) {
           return;
         }
@@ -283,7 +286,6 @@
       } else {
         localStorage.setItem("labLoginUsername", username);
         localStorage.setItem("labLoginPassword", newPassword);
-        location.href = `${PAGE_PATH}?change`;
       }
     }
   } catch (error) {
