@@ -5,7 +5,7 @@
 
 <!-- Metadata -->
 <!DOCTYPE html>
-<title>Signup - A new Login client</title>
+<title>Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="shortcut icon" href="/favicon.png" />
 <meta property="og:image" content="https://todepond.com/lab/og.png" />
@@ -16,15 +16,13 @@
 <meta name="twitter:image" content="https://todepond.com/lab/og.png" />
 
 <!-- Client styles -->
-<link rel="stylesheet" href="/style.css" />
+<link rel="stylesheet" href="./style.css#v4" />
 
 <!-- User styles -->
 <link
   rel="stylesheet"
   href="https://svenlaa.com/playground/loggo/user-styles.css" />
-<link rel="stylesheet" href="/signup/user-style.css" />
-
-<script> function loadLanguage(langCode) { return fetch(`lang/${langCode}.lang`) .then(response => { if (!response.ok) throw new Error("Language file not found"); return response.json(); }); } function applyTranslations(langData) { document.querySelectorAll("[data-translate-key]").forEach(element => { const key = element.getAttribute("data-translate-key"); if (langData[key]) { element.textContent = langData[key]; } }); } function setLanguage(langCode) { loadLanguage(langCode).then(applyTranslations).catch(error => console.error(error)); } document.addEventListener("DOMContentLoaded", () => { const userLang = navigator.language || "en_GB"; // Default to English setLanguage(userLang.replace("-", "_")); }); </script>
+<link rel="stylesheet" href="./user-style.css#v3" />
 
 <!-- Analytics available at todepond.goatcounter.com -->
 <script
@@ -38,7 +36,7 @@
 <!----------------------------------------------------->
 
 <!-- Title -->
-<h1>Signup</h1>
+<h1>Login</h1>
 <a
   href="https://github.com/TodePond/TodePondDotCom/blob/main/lab/login/"
   style="float: right; position: relative; top: -2px"
@@ -56,12 +54,12 @@
 <!-- Login screen -->
 <header>
   <label for="username">Public username</label>
-  <input class="text-input" type="text" id="username" name="username" autocomplete="off" />
+  <input type="text" id="username" name="username" autocomplete="off" />
   <br /><br />
   <label for="password">Unsecurely stored password</label>
-  <input class="text-input" type="password" id="password" name="password" autocomplete="off" />
+  <input type="password" id="password" name="password" autocomplete="off" />
   <br /><br />
-  <button class="text-input" type="submit" class="primary">Signup</button>
+  <button type="submit" class="primary">Login</button>
 </header>
 
 <!-- Feed title and refresh indicator -->
@@ -78,7 +76,7 @@
 <!----------------------------------------------------->
 <script type="module">
   import { config } from "./logiverse.js";
-  const PAGE_PATH = "/signup/";
+  const PAGE_PATH = "/lab/login/";
 
   const refreshSign = document.querySelector("#refresh-sign");
   const loadingFeed = document.querySelector("#loading-feed");
@@ -137,8 +135,8 @@
             <input type="text" id="status" name="status" autocomplete="off" />
             <span class="status-buttons">
               <span>
-              <button class="text-input" data-translate-key="welcome_message" id="update-status" class="primary">Update status</button>
-              <button class="text-input" id="update-gif">Update status with GIF</button>
+              <button id="update-status" class="primary">Update status</button>
+              <button id="update-gif">Update status with GIF</button>
               </span>
               <dialog id="gif-dialog">
               <form method="dialog">
@@ -146,26 +144,21 @@
                   Pick a GIF
                   <button type="submit" value="" class="close-button" autofocus>Close</button>
                   </header>
-                  <button class="text-input gif" value="tode" title="Tode"><img src="https://todepond.com/image/tode.gif" alt="Tode" /></button>
-                  <button class="text-input gif" value="berd" title="Berd"><img src="https://todepond.com/image/berd.gif" alt="Berd" /></button>
-                  <button class="text-input gif" value="bot" title="Bot"><img src="https://todepond.com/image/bot.gif" alt="Bot" /></button>
+                  <button class="gif" value="tode" title="Tode"><img src="https://todepond.com/image/tode.gif" alt="Tode" /></button>
+                  <button class="gif" value="berd" title="Berd"><img src="https://todepond.com/image/berd.gif" alt="Berd" /></button>
+                  <button class="gif" value="bot" title="Bot"><img src="https://todepond.com/image/bot.gif" alt="Bot" /></button>
               </form>
               </dialog>
             </span>
             <br /><br />
               <details class="account-dashboard">
-              <summary class="account-burger">Burger menu</summary>
+                <summary class="account-burger">Burger menu</summary>
                 <span class="account-actions">
-                  <button class="text-input" onclick="location.href = '${PAGE_PATH}?logout';" class="">Switch account</button>
-                  <button class="text-input" id="delete-account" class="danger">Delete account</button>
-                  <br><br>
-                  <!-- new Change Password button -->
-                  <label for="password-change">New password</label>
-                  <input class="password-change" type="password">
-                  <br><br>
-                  <button class="text-input" id="change-password" class="secondary">Change Password</button>
+                    <button id="mcplant">Eat McPlant</button>
+                    <button onclick="location.href = '${PAGE_PATH}?logout';" class="">Switch account</button>
+                    <button id="delete-account" class="danger">Delete account</button>
                 </span>
-      `;
+        `;
 
       const loginAutomatically =
         localStorage.getItem("labLoginAutoLogin") !== "false";
@@ -211,6 +204,10 @@
         });
       }
       // }
+      const mcplantButton = document.querySelector("#mcplant");
+      mcplantButton.addEventListener("click", () => {
+        alert("You eat a McPlant. Yum! You regain 10 HP.");
+      });
       const deleteAccountButton = document.querySelector("#delete-account");
       deleteAccountButton.addEventListener("click", async () => {
         const confirmDelete = confirm(
@@ -254,57 +251,11 @@
         if (!gif) return; // close button clicked
         handleUpdateStatus({ username, password, gif });
       });
-      
-      // Password changing
-      const changePasswordButton = document.querySelector("#change-password");
-      changePasswordButton.addEventListener("click", async () => {
-        const newPassword = prompt("Enter new password");
-        if (!newPassword) {
-          return;
-        }
-  
-  loadingFeed.style.display = "block";
-  try {
-    const changeResponse = await fetch(config.endpoints.delete, {
-      method: "POST",
-      body: JSON.stringify({ username, password }),
-    });
-    const changeJson = await changeResponse.json();
-    loadingFeed.style.display = "none";
-    
-    if (changeJson.error) {
-      alert(changeJson.error);
-    } else {
-      // Login with new password to update session
-      const logAgainResponse = await fetch(config.endpoints.login, {
-        method: "POST",
-        body: JSON.stringify({ username, newPassword }),
-      });
-      const logJson = await logAgainResponse.json();
-      
-      if (changeJson.error) {
-        alert(changeJson.error);
-      } else {
-        localStorage.setItem("labLoginUsername", username);
-        localStorage.setItem("labLoginPassword", newPassword);
-      }
-    }
-  } catch (error) {
-    console.error("Error during password change or login:", error);
-    alert("There was an error. Please try again.");
-    loadingFeed.style.display = "none";
-  }
-});
-
     }
 
     await pullUserStatuses();
     loadingFeed.style.display = "none";
   }
-
-  window.targetyo = () => {
-    document.body.classList.remove("untarget");
-  };
 
   async function handleUpdateStatus({ username, password, gif = null }) {
     const button = document.querySelector("#update-status");
@@ -364,12 +315,19 @@
 
     const entries = [];
     const instances = await Promise.all(
-      config.instances.map(({ feed, name }) =>
-        fetch(feed)
-          .then((res) => res.json())
-          .then((feed) => ({ name, feed }))
-      )
-    );
+            config.instances.map(({ feed, name }) => {
+                const controller = new AbortController();
+                const timeout = setTimeout(() => controller.abort(), 5000);
+
+                return fetch(feed, { signal: controller.signal })
+                    .then((res) => res.json())
+                    .then((feed) => {
+                        clearTimeout(timeout);
+                        return { name, feed };
+                    })
+                    .catch(() => ({ name, feed: [] })); // Return empty feed on timeout/error
+            })
+        );
     for (let instance of instances) {
       for (let post of instance.feed) {
         const [status, username, timestamp, gif] = post;
@@ -905,6 +863,7 @@
   //   );
   // });
   // }
+
   function addUserActions({
     userActionsElement,
     username,
@@ -931,6 +890,15 @@
       handleLike({ username, loggedInUsername, loggedInPassword })
     );
     userActionsElement.appendChild(likeButton);
+
+    const plusButton = document.createElement("button");
+    plusButton.textContent = "Login+";
+    plusButton.classList.add("warning");
+    plusButton.classList.add("action-button");
+    plusButton.addEventListener("click", () =>
+      alert("This user pays for Login+")
+    );
+    userActionsElement.appendChild(plusButton);
   }
 
   async function handleLike({ username, loggedInUsername, loggedInPassword }) {
@@ -948,6 +916,4 @@
   window.targetyo = () => {
     document.body.classList.remove("untarget");
   };
-
-  
-    </script>
+        </script>
