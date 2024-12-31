@@ -26,7 +26,7 @@
   --shade-9: rgb(224, 224, 224);
   --shade-10: rgb(255, 255, 255);
 
-  --best-colour: #9faeee;
+  --best-colour: #d3d7d6;
   --best-colour-faded: rgb(172, 139, 255);
 
   --void: var(--shade-0);
@@ -86,9 +86,9 @@ code {
 }
 
 body {
-  color: white;
+  color: black;
   background-color: rgb(31, 39, 54);
-  font-family: sans-serif;
+  font-family: "Times New Roman";
   max-width: 750px;
   margin: 0 auto;
   padding: 30px 10px;
@@ -101,11 +101,11 @@ video {
 }
 
 a {
-  color: #46ff80;
+  color: #7c6140;
 }
 
 :target {
-  outline: 2px solid #4680ff;
+  outline: 2px solid #7c6140;
   outline-offset: 2px;
 }
 
@@ -127,8 +127,8 @@ label {
 
 a:hover {
   color: black;
-  background-color: #46ff80;
-  outline: 2px solid #46ff80;
+  background-color: #7c6140;
+  outline: 2px solid #7c6140;
 }
 
 ul {
