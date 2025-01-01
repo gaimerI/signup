@@ -6,8 +6,8 @@ export default {
 
 export const config = {
   version: "0.0.1",
-  instance_name: "todepond.com",
-  instance_admin: "TodePond",
+  instance_name: "gaimeri.github.io",
+  instance_admin: "gaimerI17",
   endpoints: {
     update: "https://gaimeri17-appealingsalmoncrayfish.web.val.run",
     login: "https://gaimeri17-quickorangelamprey.web.val.run",
@@ -33,6 +33,10 @@ export const config = {
         },
       },
     },
+    {
+      name: "gaimeri.github.io",
+      feed: "https://gaimeri17-charminggreenblackbird.web.val.run",
+    }
     {
       name: "svenlaa.com",
       feed: "https://api.svenlaa.com/logiverse/logs",
