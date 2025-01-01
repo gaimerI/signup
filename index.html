@@ -239,7 +239,10 @@
         const confirmChange = confirm(
           "Are you sure you want to change your password?\nThis will delete your most recent status."
         );
-        if (!confirmChange) {
+        const newPassword = prompt(
+          "Enter new password"
+        );
+        if (!newPassword) {
           return;
         }
         loadingFeed.style.display = "block";
