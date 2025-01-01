@@ -1,7 +1,7 @@
 export default {
-  name: "todepond.com",
-  admin: "TodePond",
-  feed: "https://todepond-lablogingetusers.web.val.run",
+  name: "gaimeri.github.io",
+  admin: "gaimerI17",
+  feed: "https://gaimeri17-charminggreenblackbird.web.val.run",
 };
 
 export const config = {
@@ -9,10 +9,10 @@ export const config = {
   instance_name: "todepond.com",
   instance_admin: "TodePond",
   endpoints: {
-    update: "https://todepond-labloginupdatestatus.web.val.run",
-    login: "https://todepond-lablogin.web.val.run",
-    delete: "https://todepond-lablogindeleteaccount.web.val.run",
-    ban: "https://todepond-labloginbanuser.web.val.run",
+    update: "https://gaimeri17-appealingsalmoncrayfish.web.val.run",
+    login: "https://gaimeri17-quickorangelamprey.web.val.run",
+    delete: "https://gaimeri17-superbblushduck.web.val.run",
+    ban: "https://gaimeri17-notedgraymink.web.val.run",
   },
   instances: [
     {
