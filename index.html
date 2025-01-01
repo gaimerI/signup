@@ -234,38 +234,46 @@
         }
       });
 
+      // Password changing
       const changePasswordButton = document.querySelector("#change-password");
       changePasswordButton.addEventListener("click", async () => {
-        const confirmChange = confirm(
-          "Are you sure you want to change your password?\nThis will delete your most recent status."
-        );
-        if (!confirmChange) {
-          return;
-        }
-        const newPassword = prompt(
-          "Enter new password"
-        );
+        const newPassword = prompt("Enter new password");
         if (!newPassword) {
           return;
         }
-        loadingFeed.style.display = "block";
-        const response = await fetch(config.endpoints.delete, {
-          method: "POST",
-          body: JSON.stringify({ username, password }),
-        });
-        const responseTwo = await fetch(config.endpoints.login, {
-          method: "POST",
-          body: JSON.stringify({ username, password }),
-        });
-        const json = await responseTwo.json();
-        loadingFeed.style.display = "none";
-        if (json.error) {
-          alert(json.error);
-        } else {
-          localStorage.setItem("labLoginPassword", newPassword);
-          location.href = PAGE_PATH + "?change";
-        }
+  
+  loadingFeed.style.display = "block";
+  try {
+    const changeResponse = await fetch(config.endpoints.delete, {
+      method: "POST",
+      body: JSON.stringify({ username, password }),
+    });
+    const changeJson = await changeResponse.json();
+    loadingFeed.style.display = "none";
+    
+    if (changeJson.error) {
+      alert(changeJson.error);
+    } else {
+      // Login with new password to update session
+      const logAgainResponse = await fetch(config.endpoints.login, {
+        method: "POST",
+        body: JSON.stringify({ username, newPassword }),
       });
+      const logJson = await logAgainResponse.json();
+      
+      if (changeJson.error) {
+        alert(changeJson.error);
+      } else {
+        localStorage.setItem("labLoginUsername", username);
+        localStorage.setItem("labLoginPassword", newPassword);
+      }
+    }
+  } catch (error) {
+    console.error("Error during password change or login:", error);
+    alert("There was an error. Please try again.");
+    loadingFeed.style.display = "none";
+  }
+});
       
       const statusInput = document.querySelector("#status");
       statusInput.value = json[3];
