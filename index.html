@@ -816,6 +816,11 @@
         continue;
       }
 
+      if (character === "^") {
+        html += "<br>";
+        i++;
+      }
+
       if (character === "_") {
         if (emphasisingUnderscore) {
           html += "</em>";
