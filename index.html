@@ -844,12 +844,12 @@
       if (character === "#") {
         if (hashtag) {
           html += "</mark>";
-          i++;
         } else {
           html += "<mark>";
           html += "#";
         }
         hashtag = !hashtag;
+        i++;
         continue;
       }
           
