@@ -854,6 +854,7 @@
         } else {
           html += <mark>;
         }
+        hashtag = !hashtag;
         continue;
       }
           
@@ -876,6 +877,9 @@
     }
     if (blockquote) {
       html += "</blockquote>";
+    }
+    if (hashtag) {
+      html +÷ "</mark>;
     }
 
     return html;
