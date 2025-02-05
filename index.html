@@ -819,6 +819,9 @@
 
       if (character === "^") {
         html += "<br>";
+        if (blockquote) {
+          html += "</blockquote>";
+        }
         i++;
         continue;
       }
