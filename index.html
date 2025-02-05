@@ -848,12 +848,12 @@
         continue;
       }
 
-      if (character === #) {
+      if (character === "#") {
         if (hashtag) {
           html += "</mark>";
           i++;
         } else {
-          html += <mark>;
+          html += "<mark>";
         }
         hashtag = !hashtag;
         continue;
@@ -880,7 +880,7 @@
       html += "</blockquote>";
     }
     if (hashtag) {
-      html +÷ "</mark>;
+      html += "</mark>";
     }
 
     return html;
