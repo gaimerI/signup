@@ -716,6 +716,7 @@
     let linkPathing = false;
     let linkPath = "";
     let coding = false;
+    let hastag = false;
 
     while (i < markdown.length) {
       const character = markdown[i];
@@ -850,7 +851,7 @@
       if (nextCharacter === #) {
         if (hashtag) {
           html += "</mark>";
-          i++
+          i++;
         } else {
           html += <mark>;
         }
