@@ -721,6 +721,7 @@
       const character = markdown[i];
       const nextCharacter = markdown[i + 1];
       const nextTwoCharacters = markdown.slice(i, i + 2);
+      const nextFourCharacters = markdown.slice(i, i + 4);
 
       if (coding) {
         if (character === "`") {
@@ -830,6 +831,12 @@
         }
         emphasisingUnderscore = !emphasisingUnderscore;
         i++;
+        continue;
+      }
+
+      if (nextFourCharacters === "----") {
+        html += "<hr>";
+        i += 4;
         continue;
       }
 
