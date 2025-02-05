@@ -9,9 +9,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="shortcut icon" href="/signup/favicon.png" />
 <meta property="og:image" content="https://todepond.com/lab/og.png" />
-<meta property="og:title" content="Login" />
+<meta property="og:title" content="Signup" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Login" />
+<meta name="twitter:title" content="Signup" />
 <meta name="twitter:description" content="" />
 <meta name="twitter:image" content="https://todepond.com/lab/og.png" />
 
@@ -847,6 +847,16 @@
         continue;
       }
 
+      if (nextCharacter === #) {
+        if (hashtag) {
+          html += "</mark>";
+          i++
+        } else {
+          html += <mark>;
+        }
+        continue;
+      }
+          
       html += character;
       i++;
     }
