@@ -819,14 +819,7 @@
       }
 
       if (character === "^") {
-        if (coding) {
-          html += "\n";
-        } else {
-          html += "<br>";
-          if (blockquote) {
-            html += "</blockquote>";
-          }
-        }
+        html += "<br>";
         i++;
         continue;
       }
