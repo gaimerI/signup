@@ -624,3 +624,9 @@ input[type="checkbox"] {
   gap: 5px;
   justify-content: space-between;
 }
+
+mark {
+  color: white;
+  font-weight: bold;
+  background-color: transparent;
+}
