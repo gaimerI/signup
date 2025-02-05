@@ -624,3 +624,9 @@ input[type="checkbox"] {
   gap: 5px;
   justify-content: space-between;
 }
+
+code {
+  color: white;
+  background-color: var(--dark-grey);
+
+}
