@@ -958,12 +958,16 @@
 
     const likeButton = document.createElement("button");
     likeButton.textContent = "Like";
-    likeButton.classList.add("primary");
-    likeButton.classList.add("action-button");
+    likeButton.classList.add("primary", "action-button");
     likeButton.addEventListener("click", () =>
-      handleLike({ username, loggedInUsername, loggedInPassword })
-    );
+      handleLike(username));
+    const likeCountSpan = document.createElement("span");
+    likeCountSpan.id = `like-count-${username}`;
+    likeCountSpan.style.marginLeft = "5px";
+    likeCountSpan.textContent = "0";
     userActionsElement.appendChild(likeButton);
+    userActionsElement.appendChild(likeCountSpan);
+    updateLikeCount(username);
 
     const plusButton = document.createElement("button");
     plusButton.textContent = "Login+";
