@@ -990,4 +990,24 @@
   window.targetyo = () => {
     document.body.classList.remove("untarget");
   };
+
+  async function fetchLikes(username) {
+    try {
+      const response = await fetch(`${config.endpoints.likes}?username=${username}`, {
+        method: "GET"
+      });
+      const json = await response.json();
+      return json.likes ?? 0;
+    } catch (error) {
+      console.error("Error fetching likes:", error);
+      return 0;
+    }
+  }
+
+  async function updateLikeCount(username) {
+    const likeCountSpan = document.querySelector(`#like-count-${username}`);
+    if (likeCountSpan) {
+      likeCountSpan.textContent = await fetchLikes(username);
+    }
+  }
         </script>
