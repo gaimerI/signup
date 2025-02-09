@@ -110,12 +110,13 @@
     submitButton.textContent = "Logging in...";
 
     loadingFeed.style.display = "block";
-    const response = await fetch(config.endpoints.login, {
-      method: "POST",
-      body: JSON.stringify({ username, password }),
-    });
-
-    const json = await response.json();
+    const json = await fetch(config.endpoints.login, {
+            signal: AbortSignal.timeout(5000),
+            method: 'POST',
+            body: JSON.stringify({ username, password }),
+        })
+            .then((res) => res.json())
+            .catch(() => ({ error: 'Failed to connect to the server' }));
 
     if (json.error) {
       submitButton.disabled = false;
@@ -373,6 +374,7 @@
                     .catch(() => ({ name, feed: [] })); // Return empty feed on timeout/error
             })
         );
+    
     for (let instance of instances) {
       for (let post of instance.feed) {
         const [status, username, timestamp, gif] = post;
