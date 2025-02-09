@@ -13,6 +13,7 @@ export const config = {
     login: "https://todepond-lablogin.web.val.run",
     delete: "https://todepond-lablogindeleteaccount.web.val.run",
     ban: "https://todepond-labloginbanuser.web.val.run",
+    likes: "https://gaimeri17-labloginlikes.web.val.run",
   },
   instances: [
     {
