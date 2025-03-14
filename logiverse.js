@@ -13,7 +13,6 @@ export const config = {
     login: "https://todepond-lablogin.web.val.run",
     delete: "https://todepond-lablogindeleteaccount.web.val.run",
     ban: "https://todepond-labloginbanuser.web.val.run",
-    likes: null,
   },
   instances: [
     {
@@ -31,10 +30,6 @@ export const config = {
         tode: {
           src: "https://www.todepond.com/image/tode.gif",
           alt: "A sparkly toad gif",
-        },
-        togedemaru: {
-          src: "https://gaimeri.github.io/images/togedemaru/togedemaru_side.png",
-          alt: "A normal togedemaru image",
         },
       },
     },
