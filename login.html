@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <h1>Sign up with Signup</h1>
+  <link rel="stylesheet" href="https://gaimeri.github.io/styles.css" />
+
+  <header>
+    <label for="username">Public username</label>
+    <input type="text" id="username" name="username" autocomplete="off" />
+    <br /><br />
+    <label for="password">Unsecurely stored password</label>
+    <input type="password" id="password" name="password" autocomplete="off" />
+    <br /><br />
+    <button type="submit" class="primary" id="login">Login</button>
+  </header>
+
+  <script>
+    const loginButton = document.getElementById("login");
+    
+    loginButton.addEventListener("click", handleLogin);
+    
+    async function handleLogin() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      
+      const response = await fetch("https://todepond--81ba50b427af11f0aecd569c3dd06744.web.val.run", {
+        method: "POST",
+        body: JSON.stringify({ username, password }),
+      });
+      
+      const logJson = await response.json();
+      const error = logJson.error;
+      
+      if (!error) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const value = urlParams.get('redirectTo') + "?signedUp";
+        window.location.href = `https://gaimeri.github.io/text-tools/redirect.html?url=${encodeURI(value)}`;
+      }
+    }
+  </script>
+</html>
+<!--
+
+-->
